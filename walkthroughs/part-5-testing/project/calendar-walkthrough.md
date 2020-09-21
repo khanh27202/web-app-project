@@ -1,6 +1,6 @@
 # Test Driven Development - Calendar
 
-**Prerequisite:** If you're new to test-driven development, make sure you read
+**Prerequisite**: If you're new to test-driven development, make sure you read
 the intro walkthrough first!
 
 ## Getting Started
@@ -99,52 +99,3 @@ file. Write one test for each of the following scenarios:
 Feel free to add additional tests for other scenarios that you think might be worth testing.
 
 Then modify `query` to make those new tests (and the provided tests) pass.
-
-
-## Optional Coding Challenge
-
-**Note**: This part of the activity is not required but a challenge you can take on if you have the time:
-
-Implement an optimized version of the optional attendee functionality: If no time exists for all optional and mandatory attendees, find the time slot(s) that allow mandatory attendees and the greatest possible number of optional attendees to attend.
-
-## Pull Request
-
-To get feedback on your code, create a pull request and send it to your host
-for review.
-
-Make sure your code is merged into your repo before the end of the week!
-
-## Web Application
-
-The code you wrote can be used in many contexts: from tests, from a desktop Java
-application, from server-side Java, etc.
-
-This project contains a bare-bones web application that uses HTML, JavaScript,
-and a servlet to allow users to interact with the code you just wrote. This code
-is already written!
-
-You can imagine you worked on a team where you were responsible for the
-algorithm, and somebody else was responsible for the web application that calls
-your algorithm.
-
-To run the web application, run a server:
-
-```bash
-mvn package appengine:run
-```
-
-Then open the web preview to view a webpage that shows a user interface that
-provides access to the algorithm you wrote!
-
-## Finishing Up
-
-<walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
-
-You've created your own algorithm, used data structures to solve a complex
-problem, and have seen how unit testing helped ensured everything works. That's
-a lot for one week!
-
-If you have time left over this week and you're looking for a challenge:
-
--   What's the algorithmic complexity of your algorithm?
--   What's another algorithm to solve this problem?

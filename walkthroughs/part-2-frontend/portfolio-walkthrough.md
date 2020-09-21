@@ -5,13 +5,9 @@
 This week, you'll use HTML to create a portfolio webpage, and you'll use App
 Engine to deploy that webpage to a public URL.
 
-You can return to this walkthrough anytime by running this command:
+## Issues
 
-```bash
-teachme ~/step/walkthroughs/week-2-web-development/portfolio-walkthrough.md
-```
-
-Click the **Start** button to begin!
+**You will likely encounter some errors during the setup portions of this section**. Please reach out to me over Slack if you have any issues!
 
 ## Directory Structure
 
@@ -46,8 +42,7 @@ files under that directory.
     is App Engine's configuration file. This file tells Google Cloud how to
     deploy your code.
 
-Try navigating to the various files in this project and viewing their contents
-in the Google Cloud Shell editor.
+Try navigating to the various files in this project and viewing their contents.
 
 You'll learn more about these files in the following steps.
 
@@ -55,33 +50,7 @@ You'll learn more about these files in the following steps.
 
 Before you continue, set your default Java version to Java 8.
 
-To do that, first open your `.bashrc` file by running this command:
-
-```bash
-edit ~/.bashrc
-```
-
-This file sets up your console configuration. Copy this line into the end of
-that file:
-
-```
-sudo update-java-alternatives -s java-1.8.0-openjdk-amd64 && export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-```
-
-Save and close the `.bashrc` file, and then execute it using this command:
-
-```bash
-source ~/.bashrc
-```
-
-You can ignore any error messages about not being able to find alternatives for
-various plugins.
-
-### Why Java 8?
-
-Google Cloud recently announced support for Java 11, but Java 11 is not
-backwards compatible with every library in these walkthroughs. To make sure
-everything will work as expected, please use Java 8.
+### Check version
 
 To make sure you're using the correct version of Java, run these commands:
 
@@ -91,6 +60,65 @@ java -version
 ```
 
 If these commands print a version like `1.8.0_xxx`, then you're good to go!
+
+### If not using Java 8:
+
+Download JDK 8 [here](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) and run the installer.
+
+Open your `.bashrc` file by running this command:
+
+```bash
+edit ~/.bashrc
+```
+
+macOS users should set their `.bash_profile` files instead:
+
+```bash
+edit ~/.bash_profile
+```
+
+This file sets up your console configuration. Add this line into the end of
+that file, changing `(path to Java home)` accordingly:
+
+```
+export JAVA_HOME=(path to Java home)
+```
+
+For macOS, look inside `/Library/Java/JavaVirtualMachines/`.
+
+For Linux, look inside `/usr/lib/jvm/`.
+
+For Windows, look inside `C:`\`Program Files`\`Java`.
+
+Look for a `1.8.0_xxx` folder inside your OS’s folder, then navigate to `/Contents/Home`. Copy the full path. It should look like `/(OS path)/jdk1.8.0_xxx.jdk/Contents/Home`, where `xxx` is your Java 8’s minor version.
+
+For example, it would be `/Library/Java/JavaVirtualMachines/jdk1.8.0_xxx.jdk/Contents/Home` on macOS.
+
+Save and close the `.bashrc` or `.bash_profile` file and restart your command line.
+
+Verify your Java version again.
+
+## Apache Maven
+
+You’ll need to install Maven as well. To check if it is installed, run `mvn -v` and see if there is proper output.
+
+### If not installed:
+
+Download the Maven .zip from [here](https://apache.osuosl.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip). Extract it to any directory that you’d like.
+
+Inside the extracted `apache-maven-3.6.3` folder, there should be a `bin` directory. Add that to your PATH. To do this, open up your `.bashrc` or `.bash_profile` and add `export PATH="$PATH:/(your path to Maven)/apache-maven-3.6.3/bin”`.
+
+Verify Maven’s installation by running `mvn -v` again.
+
+## Google Cloud SDK
+
+Lastly, you’ll need to install the GCloud SDK.
+
+Before you install Google Cloud SDK, find out your Python directory by running `which python`. Add the following to your `.bashrc` or `.bash_profile`: `export CLOUDSDK_PYTHON=“(path to your Python)”`
+
+Download and follow the instructions [here](https://cloud.google.com/sdk/docs/install).
+
+For macOS and Linux, add the GCloud SDK to your PATH the same way you added Maven to your PATH: `export PATH="$PATH:/(path to GCloud SDK)/google-cloud-sdk/bin”`.
 
 ## Run a Development Server
 
@@ -119,22 +147,18 @@ minutes. When the command completes, you'll see this in the console:
 
 **INFO: Dev App Server is now running**
 
-Now that you have a server running, your browser can send requests to it. Click
-the <walkthrough-web-preview-icon></walkthrough-web-preview-icon> icon and then
-select **Preview on port 8080** to open a tab that displays the `index.html`
-file.
+Now that you have a server running, your browser can send requests to it. Open a `localhost:8080` tab in your browser.
 
 Your new tab should show an example portfolio. You'll start customizing this in
 the next step!
 
+### Tip
+
+It is recommended to create an alias for this command in your `.bashrc` or `.bash_profile`. For example, adding `alias run="mvn package appengine:run”` will run the command if you just type `run`. You can do the same with other commands!
+
 ## index.html
 
-Open the
-<walkthrough-editor-open-file
-    filePath="step/portfolio/src/main/webapp/index.html">
-  index.html
-</walkthrough-editor-open-file>
-file in the Google Cloud Shell editor.
+Open the index.html file in an editor of your choice.
 
 This file contains **HTML tags** that tell a browser how to render text. For
 example, the `<h1>` tag renders as a heading, and the `<p>` tag renders as a
@@ -145,7 +169,7 @@ to include your name.
 
 ### Restarting Your Development Server
 
-**Tip:** Pressing `ctrl + c` in the console will interrupt any process running
+**Tip**: Pressing `ctrl + c` in the console will interrupt any process running
 in the foreground, which will usually cause the program to abort.
 
 Whenever you change your code, you need to restart your server to see your
@@ -156,7 +180,7 @@ this command again:
 mvn package appengine:run
 ```
 
-**Tip:** You can press the up arrow key to cycle through previous commands
+**Tip**: You can press the up arrow key to cycle through previous commands
 instead of retyping them.
 
 After your server is running again, click the
@@ -164,7 +188,7 @@ After your server is running again, click the
 select `Preview on port 8080` to see your changes. Get in the habit of rerunning
 your dev server to test your changes often!
 
-**Warning:** If you don't see your changes after you refresh, your browser might
+**Warning**: If you don't see your changes after you refresh, your browser might
 be caching an old version. Perform a
 [cache-clearing refresh](https://en.wikipedia.org/wiki/Wikipedia:Bypass_your_cache)
 to force your browser to download the new files. In Chrome, open the Chrome Menu
@@ -196,7 +220,7 @@ mvn package appengine:run
 Then look through the files in the `stanley` project to see an example of HTML,
 JavaScript, and CSS in action.
 
-**Remember:** If you don't see changes after you restart your server, you might
+**Remember**: If you don't see changes after you restart your server, you might
 need a
 [cache-clearing refresh](https://en.wikipedia.org/wiki/Wikipedia:Bypass_your_cache).
 
@@ -255,7 +279,7 @@ and colors. The
 </walkthrough-editor-open-file>
 file contains some default styling.
 
-Learning CSS is **optional** for STEP. You can skip this step if you want.
+Learning CSS is **optional** for this project. You can skip this step if you want.
 But if you're curious, the
 [W3Schools tutorial](https://www.w3schools.com/css/css_intro.asp) is a great
 place to learn more. We recommend the
@@ -392,8 +416,8 @@ world, you can deploy it to a live server!
 
 To deploy to a live server:
 
--   Navigate to
-    [https://console.cloud.google.com/home/dashboard](https://console.cloud.google.com/home/dashboard).
+-   Navigate to the
+    [Google Cloud dashboard](https://console.cloud.google.com/home/dashboard).
 -   Make sure your project is selected in the dropdown at the top.
 -   Find the **Project ID** on that page.
 -   Open the
@@ -403,7 +427,7 @@ To deploy to a live server:
     file.
 -   Change `YOUR_PROJECT_ID_HERE` to your project ID.
 -   Enable Cloud Build on your project by visiting https://console.developers.google.com/apis/api/cloudbuild.googleapis.com/overview?project=YOUR_PROJECT_ID_HERE
-    - Will require enabling billing. See doc for Intern Dev Environment Setup https://docs.google.com/document/d/1_zKf_Vpb1lxnWLDhQ6IGcA6W95UBufr06SmmoJZY7iE/edit#heading=h.wzgtvu2xiuh3. You will be unable to deploy applications after November 30, 2019 without adding a billing instrument to your project. Please add one at https://console.cloud.google.com/billing/linkedaccount?YOUR_PROJECT_ID_HERE
+    - Will require enabling billing. Please add one at https://console.cloud.google.com/billing/linkedaccount?YOUR_PROJECT_ID_HERE
 -   Execute this command:
 
 ```bash
@@ -411,7 +435,7 @@ mvn package appengine:deploy
 ```
 
 -   The first time you run this command, the console will give you a link. Open
-    that link, and login to that page using your `@google.com` account.
+    that link, and login to that page using your Google Cloud account.
 -   After you login, you'll see a long string of characters. Copy those
     characters.
 -   Paste the characters into the console and press enter.
@@ -419,14 +443,12 @@ mvn package appengine:deploy
 After the command successfully completes, you can now navigate to
 `YOUR_PROJECT_ID.appspot.com` to see your portfolio.
 
-When you're done, share this link in the chat and with your team!
-
 ## Pull Requests
 
-Your host will be reviewing your code to provide feedback and support. If you
+I’ll be reviewing your code to provide feedback and support. If you
 haven't already, follow the instructions
 [here](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)
-to create a pull request from your code so your host can review it.
+to create a pull request from your code so I can review it.
 
 You don't have to wait until you're finished to send your code for review. In
 fact, it's better if you send multiple small pull requests instead of one big
@@ -437,10 +459,8 @@ week.
 
 ## Congratulations!
 
-<walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
-
 Congratulations, you now have a portfolio page deployed to a live URL! Make sure
-you share your URL with your team and in the chat.
+you share your URL on the Slack.
 
 If you have extra time left over, consider adding a page that describes your
 experiences with STEP so far, or writing JavaScript that makes your page
@@ -449,8 +469,4 @@ interactive, or using CSS to make your page more beautiful.
 Next week, you'll learn about server-side code and add a comment feature to your
 portfolio.
 
-When you're ready, start the next walkthrough by running this command:
-
-```bash
-teachme ~/step/walkthroughs/week-3-server/comments-walkthrough.md
-```
+When you're ready, navigate to the `part-3` folder.
