@@ -5,5 +5,5 @@ This repo contains some projects to complete to learn HTML, CSS, JavaScript, and
 To get started:
 
 - Fork this repo to your own account (click the "Fork" button on GitHub)
-- Clone your version of this repo: `git clone https://github.com/(your GitHub username)/web-app-onboarding.git`
+- Clone this repo: `cd; git clone https://github.com/jasonhan-vassar/web-app-walkthroughs.git`
 - Open the .md instruction files using either GitHub or a Markdown reader
