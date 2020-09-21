@@ -6,4 +6,4 @@ To get started:
 
 - Clone this repo: `cd; git clone https://github.com/jasonhan-vassar/web-app-walkthroughs.git`
 - Open the `part-1-setup` folder inside `walkthroughs` to get started
-- Open the .md instruction files using either GitHub or a Markdown reader
+- Open the .md instructions files using either GitHub or a Markdown reader
