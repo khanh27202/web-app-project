@@ -4,6 +4,6 @@ This repo contains some projects to complete to learn HTML, CSS, JavaScript, and
 
 To get started:
 
-- Fork this repo to your own account (click the "Fork" button on GitHub)
 - Clone this repo: `cd; git clone https://github.com/jasonhan-vassar/web-app-walkthroughs.git`
+- Open the `part-1-setup` folder inside `walkthroughs` to get started
 - Open the .md instruction files using either GitHub or a Markdown reader
